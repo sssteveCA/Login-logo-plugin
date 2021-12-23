@@ -24,7 +24,6 @@ class Library{
     private $error; //messaggio di errore
     private $query; //ultima query inviata
     private $queries; //lista di tutte le query inviate
-    //private static $Adest = ABSPATH.'wp-content/plugins/loginLogoMin/img/';
     private static $Adest = ABSPATH.'wp-content/plugins/'.DIR_PLUGIN.'/img/';
     private static $Rdest = '../img/';
     private static $RdestRoot = './img/';

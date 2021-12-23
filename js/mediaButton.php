@@ -22,7 +22,7 @@ jQuery(document).ready( function($) {
             try{ 
                 //console.log(risposta);
                 var risp = JSON.parse(risposta);
-                console.log(risp);
+                // console.log(risp);
                 if(risp.done == '1'){
                     htmlDivTable = tabella(risp.libreria);
                     jQuery('#ll_div_tabella').html(htmlDivTable);
@@ -65,7 +65,8 @@ jQuery(document).ready( function($) {
                 //console.log(risposta);
                 try{
                     var risp = JSON.parse(risposta);
-                    console.log(risp);
+                    alert(risp.msg);
+                    // console.log(risp);
                     if(risp.hasOwnProperty('libreria') && !risp.hasOwnProperty('empty')){
                             htmlDivTable = tabella(risp.libreria);
                             jQuery('#ll_div_tabella').html(htmlDivTable);
@@ -164,7 +165,8 @@ jQuery.get(ajaxurl, data, function(response) {
                     //console.log(risposta);
                     try{ 
                         var risp = JSON.parse(risposta);
-                        console.log(risp);
+                        alert(risp.msg);
+                        // console.log(risp);
                         if(risp.hasOwnProperty('libreria') && !risp.hasOwnProperty('empty')){
                             htmlDivTable = tabella(risp.libreria);
                             jQuery('#ll_div_tabella').html(htmlDivTable);
@@ -247,7 +249,8 @@ function eventiTabella(){
                 //console.log(risposta);
                 try{
                     var risp = JSON.parse(risposta);
-                    console.log(risp);
+                    alert(risp.msg);
+                    // console.log(risp);
                     if(risp.hasOwnProperty('libreria') && !risp.hasOwnProperty('empty')){
                         htmlDivTable = tabella(risp.libreria);
                         jQuery('#ll_div_tabella').html(htmlDivTable);
@@ -289,7 +292,8 @@ function eventiTabella(){
                     //console.log(risposta);
                     try{
                         var risp = JSON.parse(risposta);
-                        console.log(risp);
+                        alert(risp.msg);
+                        // console.log(risp);
                         if(risp.hasOwnProperty('libreria') && !risp.hasOwnProperty('empty')){
                             htmlDivTable = tabella(risp.libreria);
                             jQuery('#ll_div_tabella').html(htmlDivTable);
@@ -331,7 +335,8 @@ function eventiTabella(){
                     //console.log(risposta);
                     try{
                         var risp = JSON.parse(risposta);
-                        console.log(risp);
+                        alert(risp.msg);
+                        // console.log(risp);
                         if(risp.hasOwnProperty('libreria') && !risp.hasOwnProperty('empty')){
                             htmlDivTable = tabella(risp.libreria);
                             jQuery('#ll_div_tabella').html(htmlDivTable);

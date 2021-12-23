@@ -46,7 +46,6 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                         switch($errno){
                             case 0:
                                 $risposta['done'] = '1';
-                                //$risposta['libreria'] = ll_library_content();
                                 $risposta['msg'] = 'Immagine aggiunta alla libreria';
                                 $risposta['libreria'] = ll_library_content();
                                 $risposta['action'] = 'add';
@@ -209,7 +208,7 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                 $risposta['msg'] = "Il file che stai cercando di caricare non corrisponde ad un'immagine"; 
             }
         }
-    } 
+    }//if(isset($_POST['buttonUpload'])){
 }//if(isset($_POST['action']) && $_POST['action'] != '')
 else{
     $risposta['msg'] = "Inserisci i dati richiesti per continuare";
