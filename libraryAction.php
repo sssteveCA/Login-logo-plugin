@@ -186,8 +186,18 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                         $risposta['queries'] = $library->getQueries();
                     }
                     else{
-                        $risposta['msg'] = $library->getError();
-                        $risposta['queries'] = $library->getQueries();
+                        $errno = $library->getErrno();
+                        switch($errno){
+                            case LIBRARY_IMAGEALREADYEXISTS:
+                                $risposta['msg'] = "L'immagine che si vuole aggiungere esiste già";
+                                break;
+                            case LIBRARY_COPYFAILED:
+                            case LIBRARY_INVALIDPATHS:
+                            case LIBRARY_QUERYERROR:
+                            default:
+                                $risposta['msg'] = "Errore sconosciuto: Codice {$errno}";
+                                break;
+                        }
                     }
                 }
                 catch(Exception $e){
@@ -201,7 +211,7 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
     } 
 }//if(isset($_POST['action']) && $_POST['action'] != '')
 else{
-    $risposta['msg'] = 'La variabile "action" non esiste o non ha un valore valido';
+    $risposta['msg'] = "Inserisci i dati richiesti per continuare";
 }
 
 //informazioni sulle immagini della libreria
@@ -212,20 +222,23 @@ function ll_library_content(){
     $library = new Library();
     //Array di oggetti Image contenuti nella libreria
     $immagini = $library->getImages();
-    if($library->getErrno() == 0){
-        $i = 0;
-        foreach($immagini as $img){
-            $imgInfo[$i]['id'] = $img->getId();
-            $imgInfo[$i]['src'] = $img->getSrc();
-            $imgInfo[$i]['used'] = $img->isUsed();
-            $imgInfo[$i]['fonte'] = $img->getFonte();
-            $i++;           
-        }
-    }
-    else{
-        $risposta['queries'][] = $library->getQueries(); 
-        $risposta['msg'] = "Dopo getImages(): ".$library->getError()."\r\n"; 
-    }
+    $errno = $library->getErrno();
+    switch($errno){
+        case 0:
+            $i = 0;
+            foreach($immagini as $img){
+                $imgInfo[$i]['id'] = $img->getId();
+                $imgInfo[$i]['src'] = $img->getSrc();
+                $imgInfo[$i]['used'] = $img->isUsed();
+                $imgInfo[$i]['fonte'] = $img->getFonte();
+                $i++;           
+            }
+            break;
+        case LIBRARY_QUERYERROR:
+        default:
+            $risposta['msg'] = "Errore sconosciuto. Codice {$errno}";
+            break;
+    }//switch($errno){
     return $imgInfo;
 }
 
