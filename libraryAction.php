@@ -90,8 +90,9 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                         $risposta['msg'] = "L' immagine della pagina di login è stata modificata";
                     }
                     else{
-                        $risposta['msg'] = $library->getError();
-                        $risposta['msg'] .= ' => add_action fuori dalla classe';
+                        /*$risposta['msg'] = $library->getError();
+                        $risposta['msg'] .= ' => add_action fuori dalla classe';*/
+                        $risposta['msg'] = "Errore sconosciuto";
                     }
                     $risposta['libreria'] = ll_library_content();
                     if(empty($risposta['libreria'])){
@@ -112,8 +113,25 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                             $risposta['empty'] = '1';
                             $risposta['emptyMsg'] = 'Nessuna immagine nella libreria';
                         }
-                    }
-                    else $risposta['msg'] = $library->getError();
+                    }//if($del){
+                    else{
+                        $errno = $library->getErrno();
+                        switch($errno){
+                            case LIBRARY_IMAGEREMOVEERROR:
+                                $risposta['msg'] = "Impossibile cancellare l'immagine dalla libreria";
+                                break;
+                            case LIBRARY_DELETEFILERROR:
+                                $risposta['msg'] = "Impossibile eliminare l'immagine selezionata";
+                                break;
+                            case LIBRARY_IMAGENOTEXISTS:
+                                $risposta['msg'] = "L'immagine che vuoi rimuovere dalla libreria non esiste";
+                                break;
+                            case LIBRARY_QUERYERROR:
+                            default:
+                                $risposta['msg'] = "Errore sconosciuto. Codice {$errno}";
+                                break;
+                        }// switch($errno){
+                    } 
                 }//else if($action == 'delete')
                 //deseleziona l'immagine di sfondo della pagina di login
                 else if($action == 'deselect'){

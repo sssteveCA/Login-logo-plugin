@@ -5,4 +5,6 @@
 const DIR_PLUGIN = 'loginLogo';
 $plugin_path = plugins_url().'/'.DIR_PLUGIN;
 
+const ERROR_UNKNOWN = 'Errore sconosciuto. Codice ';
+
 ?>
