@@ -41,18 +41,25 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                     try{
                         $image = new Image($dati);
                         $add = $library->Add($image);
-                        if($library->getErrno() == 0){
-                            $risposta['done'] = '1';
-                            //$risposta['libreria'] = ll_library_content();
-                            $risposta['msg'] = 'Immagine aggiunta alla libreria';
-                            $risposta['libreria'] = ll_library_content();
-                            $risposta['action'] = 'add';
-                        }
-                        else{
-                            $risposta['queries'][] = $library->getQueries(); 
-                            $risposta['msg'] = "Dopo Add(): ".$library->getError()."\r\n";
-                        }
-                        
+                        $errno = $library->getErrno();
+                        switch($errno){
+                            case 0:
+                                $risposta['done'] = '1';
+                                //$risposta['libreria'] = ll_library_content();
+                                $risposta['msg'] = 'Immagine aggiunta alla libreria';
+                                $risposta['libreria'] = ll_library_content();
+                                $risposta['action'] = 'add';
+                                break;
+                            case LIBRARY_IMAGEALREADYEXISTS:
+                                $risposta['msg'] = "L'immagine che si vuole aggiungere esiste già";
+                                break;
+                            case LIBRARY_COPYFAILED:
+                            case LIBRARY_INVALIDPATHS:
+                            case LIBRARY_QUERYERROR:
+                            default:
+                                $risposta['msg'] = "Errore sconosciuto: Codice {$errno}";
+                                break;
+                        }//switch($errno){                  
                     }
                     catch(Exception $e){
                         $risposta['msg'] = $e->getMessage();
