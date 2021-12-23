@@ -1,0 +1,77 @@
+
+input#ll_form_annulla {
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: -internal-light-dark(black, white);
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    box-sizing: border-box;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    border: 1px solid black;
+}
+
+div#ll_div_content{
+    padding: 10px;
+    width: 85%;
+    min-width: 650px;
+}
+
+div#ll_div_content,div#ll_div_form,form#ll_form_upload{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+h2#ll_title{
+    margin-bottom: 40px;
+}
+
+/*
+p#ll_par_choose{
+    margin-bottom: 30px;
+}*/
+
+div.ll_div_fields, div.ll_div_buttons{
+    margin-top: 30px;
+}
+
+div.ll_div_fields{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+div.ll_div_fields *{
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+div.ll_div_buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+div#ll_div_tabella{
+    margin-top: 20px;
+    border: 1px solid black;
+    width: 90%;
+    min-width: 650px;
+    height: 500px;
+    overflow: auto;
+}
+
+table#tLibreria{
+    padding: 5px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th,table td{
+    padding: 10px;
+    border: 1px solid black;
+}
