@@ -136,15 +136,22 @@ if(isset($_POST['action']) && $_POST['action'] != ''){
                 //deseleziona l'immagine di sfondo della pagina di login
                 else if($action == 'deselect'){
                     $image->setUsedStatus('0');
-                    if($image->getErrno() == 0){
-                        $risposta['action'] = 'deselect';
-                        $risposta['done'] = '1';
-                        $risposta['msg'] = "L'immagine selezionata non comparirà più nella pagina di login";
-                        $risposta['libreria'] = ll_library_content();
-                    }//if($image->getErrno() == 0)
-                    else{
-                        $risposta['msg'] = $image->getError();
-                    } 
+                    $errno = $image->getErrno();
+                    switch($errno){
+                        case 0:
+                            $risposta['action'] = 'deselect';
+                            $risposta['done'] = '1';
+                            $risposta['msg'] = "L'immagine selezionata non comparirà più nella pagina di login";
+                            $risposta['libreria'] = ll_library_content();
+                            break;
+                        case IMAGE_NOTAFFECTED:
+                        case IMAGE_QUERYERROR:
+                        case IMAGE_INVALIDSTATUS:
+                        default:
+                            $risposta['msg'] = "Errore sconosciuto. Codice {$errno}";
+                            break;
+
+                    }//switch($errno){
                 }//else if($action == 'deselect')
             }
             else $risposta['msg'] = $library->getError();    
