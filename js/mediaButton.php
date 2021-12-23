@@ -1,8 +1,9 @@
 <?php
 header('Content-type: text/javascript');
 require_once("../../../../wp-load.php");
+require_once('../const.php');
 
-$urlAjax = get_home_url()."/wp-content/plugins/loginLogoMin/libraryAction.php";
+$urlAjax = get_home_url()."/wp-content/plugins/".DIR_PLUGIN."/libraryAction.php";
 
 $js = <<<JS
 var htmlDivTable = '';

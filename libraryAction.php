@@ -1,9 +1,10 @@
 <?php
 require_once("../../../wp-load.php");
+require_once('const.php');
 require_once('classi/Library.php');
 
-$imgPath = get_home_url().'/wp-content/plugins/loginLogoMin/img/';
-$aPath = ABSPATH.'wp-content/plugins/loginLogoMin/img/';
+$imgPath = get_home_url().'/wp-content/plugins/'.DIR_PLUGIN.'/img/';
+$aPath = ABSPATH.'wp-content/plugins/'.DIR_PLUGIN.'/img/';
 $logFile = ABSPATH.'logLibrary.txt';
 $mimes = array('image/gif','image/jpeg','image/png');
 $risposta = array();

@@ -42,35 +42,6 @@ class Image{
         $this->errno = 0;
     }
 
-    /*public function fileExists(){
-        file_put_contents(Image::$logFile,"Image fileExists\r\n",FILE_APPEND);
-        $this->errno = 0;
-        $exists = false;
-        if(isset($this->src)){
-            file_put_contents(Image::$logFile,"Image fileExists isset src => {$this->src}\r\n",FILE_APPEND);
-            $filename = $this->src;
-            //$file_headers = @get_headers($filename);
-            file_put_contents(Image::$logFile,"prima di file headers\r\n",FILE_APPEND);
-            $file_headers = @get_headers($filename);
-            file_put_contents(Image::$logFile,"dopo file headers\r\n",FILE_APPEND);
-            file_put_contents(Image::$logFile,var_export($file_headers,true)."\r\n",FILE_APPEND);
-            $regex = '/^HTTP\/[\d.]+\s200 OK$/i';
-            //file_put_contents(Image::$logFile,var_export($file_headers,true)."\r\n",FILE_APPEND);
-            if(preg_match($regex,$file_headers[0])){
-                file_put_contents(Image::$logFile,"Image fileExists preg match true\r\n",FILE_APPEND);
-                $exists = true;
-            } else {
-                file_put_contents(Image::$logFile,"Image fileExists preg match false\r\n",FILE_APPEND);
-                $exists = false;
-            }
-        }
-        else{
-            file_put_contents(Image::$logFile,"Image fileExists not isset src\r\n",FILE_APPEND);
-            $this->errno = IMAGE_SRCNOTEXISTS;
-        }
-        return $exists;
-    }*/
-
     public function fileExists(){
         $exists = false;
         $src = $this->src;
